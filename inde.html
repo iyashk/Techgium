@@ -4,13 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Handwriting Recognition</title>
-    <link
+    <!-- <link
       href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
       rel="stylesheet"
-    />
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    /> -->
+    <!-- <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script> -->
+    <!-- <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 
     <style>
       #image-display {
@@ -33,7 +33,7 @@
         display: none;
       }
 
-      .upload-label {
+      .one-button {
         display: inline-block;
         padding: 12px 30px;
         background: #3498db;
@@ -41,9 +41,10 @@
         font-size: 1em;
         transition: all 0.4s;
         cursor: pointer;
+        border-radius: 2px;
       }
 
-      .upload-label:hover {
+      .one-button:hover {
         background: #34495e;
         color: #11cd7f;
       }
@@ -56,7 +57,11 @@
         height: 50px;
         animation: spin 1s linear infinite;
       }
-
+      body {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       @keyframes spin {
         0% {
           transform: rotate(0deg);
@@ -65,63 +70,95 @@
           transform: rotate(360deg);
         }
       }
+      header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: white;
+        border-radius: 2px;
+        padding: 0.5rem;
+        align-items: center;
+      }
+      body {
+        background-color: #171725;
+      }
+      .line {
+        background-color: black;
+        width: 1000px;
+        height: 5px;
+      }
+      h2 {
+        color: #171725;
+        font-family: Roboto;
+      }
+      main {
+        background-color: white;
+        max-width: 1000px;
+        margin: 1rem auto;
+        border-radius: 5px;
+        padding: 1rem;
+      }
     </style>
   </head>
 
   <body>
-    <nav class="navbar navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="#"
-          ><center>Handwriting Recognition</center></a
-        >
-        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">
-          Help
-        </button>
-      </div>
-    </nav>
+    <header>
+      <img
+        src="https://ltts.techgium.com/Asset/img/logo.png"
+        alt=""
+        height="50px"
+      />
+      <div class="line"></div>
+      <img
+        src="https://raw.githubusercontent.com/iyashk/Techgium/main/logo.png"
+        alt=""
+        height="50px"
+      />
+    </header>
+    <main>
+      <h2 style="padding-top: 30mm; padding-bottom: 5mm; text-align: center">
+        Upload the image
+      </h2>
 
-    <h2 style="padding-top: 30mm; padding-bottom: 5mm; text-align: center">
-      Upload the image
-    </h2>
+      <div>
+        <center>
+          <form id="upload-file" method="post" enctype="multipart/form-data">
+            <label for="imageUpload" class="one-button"> Choose... </label>
+            <input
+              type="file"
+              name="file"
+              id="imageUpload"
+              accept=".png, .jpg, .jpeg"
+            />
+          </form>
 
-    <div>
-      <center>
-        <form id="upload-file" method="post" enctype="multipart/form-data">
-          <label for="imageUpload" class="upload-label"> Choose... </label>
-          <input
-            type="file"
-            name="file"
-            id="imageUpload"
-            accept=".png, .jpg, .jpeg"
-          />
-        </form>
-
-        <div id="image-display">
-          <img id="uploaded-image" src="" />
-        </div>
-
-        <div
-          class="image-section"
-          style="display: none; padding-top: 10mm; padding-bottom: 10mm"
-        >
-          <div>
-            <button
-              type="button"
-              class="btn btn-primary btn-lg"
-              id="btn-predict"
-            >
-              Predict!
-            </button>
+          <div id="image-display">
+            <img id="uploaded-image" src="" />
           </div>
-        </div>
 
-        <div class="loader" style="display: none"></div>
+          <div
+            class="image-section"
+            style="display: none; padding-top: 10mm; padding-bottom: 10mm"
+          >
+            <div>
+              <button
+                type="button"
+                class="btn btn-primary btn-lg"
+                id="btn-predict"
+              >
+                Predict!
+              </button>
+            </div>
+          </div>
 
-        <h3 id="result">
-          <span> </span>
-        </h3>
-      </center>
-    </div>
+          <div class="loader" style="display: none"></div>
+
+          <h3 id="result">
+            <span> </span>
+          </h3>
+        </center>
+      </div>
+    </main>
   </body>
 
   <footer>
